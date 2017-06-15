@@ -1,18 +1,433 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="6dp"
     tools:context="com.example.silas.trackapp.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Station:" />
+
+        <EditText
+            android:id="@+id/ed_station"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_location"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Location:" />
+
+        <EditText
+            android:id="@+id/ed_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_serv_point"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Service Point:" />
+
+        <EditText
+            android:id="@+id/ed_serv_point"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_med_call"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Medium Call:" />
+
+        <EditText
+            android:id="@+id/ed_med_call"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_date"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Date:" />
+
+        <EditText
+            android:id="@+id/ed_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_inc_type"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Incident Type:" />
+
+        <EditText
+            android:id="@+id/ed_inc_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_age"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Age:" />
+
+        <EditText
+            android:id="@+id/ed_age"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_dob"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Date of Birth:" />
+
+        <EditText
+            android:id="@+id/ed_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_time_called"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Time Called:" />
+
+        <EditText
+            android:id="@+id/ed_time_called"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_lbt"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Leave Base Time:" />
+
+        <EditText
+            android:id="@+id/ed_lbt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_arr_sc"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Arrive Scene:" />
+
+        <EditText
+            android:id="@+id/ed_arr_sc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_left_sc"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Left Scene:" />
+
+        <EditText
+            android:id="@+id/ed_left_sc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_hand_time"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Handover Time:" />
+
+        <EditText
+            android:id="@+id/ed_hand_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_left_hos"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Left Hospital:" />
+
+        <EditText
+            android:id="@+id/ed_left_hos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_arrive_base"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Arrive Base:" />
+
+        <EditText
+            android:id="@+id/ed_arrive_base"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_init_stat"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Gender:" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp"
+            android:weightSum="1">
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="FEMALE"/>
+
+            <RadioButton
+                android:layout_width="0dp"
+                android:layout_weight="0.5"
+                android:layout_height="wrap_content"
+                android:text="MALE"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Initial State:" />
+
+        <EditText
+            android:id="@+id/ed_init_stat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_hand_stat"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Handover State:" />
+
+        <EditText
+            android:id="@+id/ed_hand_stat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:typeface="sans"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/ed_main_complain"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <TextView
+            android:fontFamily="sans-serif-medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccent"
+            android:textSize="15dp"
+            android:text="Main Complain:" />
+
+        <EditText
+            android:id="@+id/ed_main_complain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:gravity="center"
+            android:typeface="sans"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="sans-serif-light"
+            android:inputType="text"
+            />
+
+        <Button
+            android:id="@+id/btn_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="#fff"
+            android:text="SUBMIT" />
+
+
+    </LinearLayout>
+
+
+</ScrollView>

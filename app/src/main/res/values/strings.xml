@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Tracker App</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="btn_log_in">LOGIN</string>
+    <string name="emptyPassword">Empty Password</string>
+    <string name="emptyUsername">Empty username</string>
 </resources>
