@@ -53,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 }if(editTextUsername.getText().toString().trim().isEmpty()){
                     editTextUsername.setError(getString(R.string.emptyUsername));
                 }else {
+                    cache.setSignedIn(true);
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     finish();
                     //loginUser(editTextUsername.getText().toString(), editTextInputPin.getText().toString());
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject jObj = new JSONObject(response);
                     if ((jObj.has("statuscode") ? jObj.getString("statuscode") : "").equalsIgnoreCase("200")){
                         Log.d(TAG, "success");
-                        cache.isSignedIn();
+                        cache.setSignedIn(true);
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     }else{
