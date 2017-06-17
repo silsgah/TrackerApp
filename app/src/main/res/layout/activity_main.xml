@@ -21,17 +21,12 @@
             android:textSize="15dp"
             android:text="Station:" />
 
-        <EditText
-            android:id="@+id/ed_station"
+        <Spinner
+            android:id="@+id/sp_station"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:typeface="sans"
-            android:imeOptions="actionNext"
-            android:nextFocusDown="@+id/ed_location"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:inputType="text"
+            android:nextFocusDown="@+id/ed_location"
             />
 
         <TextView
@@ -63,17 +58,12 @@
             android:textSize="15dp"
             android:text="Service Point:" />
 
-        <EditText
-            android:id="@+id/ed_serv_point"
+        <Spinner
+            android:id="@+id/sp_serv_point"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:typeface="sans"
-            android:imeOptions="actionNext"
-            android:nextFocusDown="@+id/ed_med_call"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:inputType="text"
+            android:nextFocusDown="@+id/ed_med_call"
             />
 
         <TextView
@@ -126,17 +116,12 @@
             android:textSize="15dp"
             android:text="Incident Type:" />
 
-        <EditText
-            android:id="@+id/ed_inc_type"
+        <Spinner
+            android:id="@+id/sp_inc_type"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:typeface="sans"
-            android:imeOptions="actionNext"
-            android:nextFocusDown="@+id/ed_age"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:inputType="text"
+            android:nextFocusDown="@+id/ed_age"
             />
 
         <TextView
@@ -346,6 +331,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="0.5"
                 android:layout_height="wrap_content"
+                android:checked="true"
                 android:text="FEMALE"/>
 
             <RadioButton
@@ -364,17 +350,12 @@
             android:textSize="15dp"
             android:text="Initial State:" />
 
-        <EditText
-            android:id="@+id/ed_init_stat"
+        <Spinner
+            android:id="@+id/sp_init_stat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:typeface="sans"
-            android:imeOptions="actionNext"
-            android:nextFocusDown="@+id/ed_hand_stat"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:inputType="text"
+            android:nextFocusDown="@+id/ed_hand_stat"
             />
 
         <TextView
@@ -385,17 +366,12 @@
             android:textSize="15dp"
             android:text="Handover State:" />
 
-        <EditText
-            android:id="@+id/ed_hand_stat"
+        <Spinner
+            android:id="@+id/sp_hand_stat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:typeface="sans"
-            android:imeOptions="actionNext"
-            android:nextFocusDown="@+id/ed_main_complain"
             android:layout_marginBottom="8dp"
-            android:fontFamily="sans-serif-light"
-            android:inputType="text"
+            android:nextFocusDown="@+id/ed_main_complain"
             />
 
         <TextView
