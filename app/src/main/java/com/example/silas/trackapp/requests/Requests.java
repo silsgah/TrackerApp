@@ -3,6 +3,7 @@ package com.example.silas.trackapp.requests;
 import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.View;
 
 import com.example.silas.trackapp.config.Endpoints;
@@ -59,6 +60,7 @@ public class Requests {
             @Override
             public void run() {
                 try {
+                    Log.d("TAG", url+json);
                     responseString = post(url, json);
                 } catch (Exception e) {
                     e.printStackTrace();

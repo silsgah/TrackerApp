@@ -53,10 +53,10 @@ public class LoginActivity extends AppCompatActivity {
                 }if(editTextUsername.getText().toString().trim().isEmpty()){
                     editTextUsername.setError(getString(R.string.emptyUsername));
                 }else {
-                    cache.setSignedIn(true);
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                    finish();
-                    //loginUser(editTextUsername.getText().toString(), editTextInputPin.getText().toString());
+//                    cache.setSignedIn(true);
+//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//                    finish();
+                    loginUser(editTextUsername.getText().toString(), editTextInputPin.getText().toString());
                 }
 
             }
@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void loginUser(String user, String pin){
-        String json = "{\"UserName\":"+user+", \"Password\":"+pin+"}";
+        String json = "{\"UserName\":\""+user+"\", \"Password\":\""+pin+"\"}";
         requests.makePostRequest(Endpoints.LOGIN.toString(), json, context, new RequestListener() {
             @Override
             public void onBefore() {
@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         finish();
                     }else{
-                        invalidCredentials("Your PIN is invalid. Please check and try again.");
+                        invalidCredentials("Your Username and/or password is invalid. Please check and try again.");
                     }
                 }catch (Exception e){
                     e.printStackTrace();
