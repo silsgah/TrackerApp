@@ -53,10 +53,10 @@ public class LoginActivity extends AppCompatActivity {
                 }if(editTextUsername.getText().toString().trim().isEmpty()){
                     editTextUsername.setError(getString(R.string.emptyUsername));
                 }else {
-//                    cache.setSignedIn(true);
-//                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-//                    finish();
-                    loginUser(editTextUsername.getText().toString(), editTextInputPin.getText().toString());
+                    cache.setSignedIn(true);
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    finish();
+                    //loginUser(editTextUsername.getText().toString(), editTextInputPin.getText().toString());
                 }
 
             }
