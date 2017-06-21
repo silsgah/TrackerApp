@@ -205,9 +205,13 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 @Override
                 public void onClick(View v) {
                     if (validate(editTexts)) {
+                        int index = genderRg.indexOfChild(findViewById(genderRg.getCheckedRadioButtonId()));
+                        gender = index == 0 ? "Female" : "Male";
+
                         sendData(v.getContext(), stationsSpinner.getSelectedItem().toString(), locationEd.getText().toString().trim(), servPointSpinner.getSelectedItem().toString(), mediumCallEd.getText().toString(), dateEd.getText().toString(), incTypeSpinner.getSelectedItem().toString(), ageEd.getText().toString(), dobEd.getText().toString(),
                                 timeCalledEd.getText().toString(), lbtEd.getText().toString().trim(), arrScEd.getText().toString(), leftScEd.getText().toString(), handTimeEd.getText().toString().trim(),
-                                leftHosEd.getText().toString().trim(), arrBaseEd.getText().toString().trim(), gender, initStateSpinner.getSelectedItem().toString(), handOffStateSpinner.getSelectedItem().toString(), mainComplainEd.getText().toString().trim()
+                                leftHosEd.getText().toString().trim(), arrBaseEd.getText().toString().trim(), gender
+                                , initStateSpinner.getSelectedItem().toString(), handOffStateSpinner.getSelectedItem().toString(), mainComplainEd.getText().toString().trim()
                                 );
                     } else {
                         Snackbar.make(v, "Please enter all fields", Snackbar.LENGTH_LONG).show();
@@ -233,16 +237,6 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 }
             });
 
-            genderRg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                    if(checkedId == R.id.rb_female){
-                        gender = "Female";
-                    }else{
-                        gender = "Male";
-                    }
-                }
-            });
 
         }
     }
@@ -264,12 +258,12 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                           String mediumCall, String date, String incidentType, String age, String dob, String timeCalled,
                           String leaveBaseTime, String arriveScene, String leftScene, String handOverTime, String leftHospital,
                           String arriveBase, String sex, String initialState, String handoverState, String mainComplain) {
-        String json = "{\"Station\": \""+station+"\", \"Location\": \""+location+"\"" +
-                ", \"Servicepoint\": \""+servicePoint+"\", \"MediumCall\": \""+mediumCall+"\", \"Date\": \""+date+"\",\"IncidentType\": \""+incidentType+"\", " +
-                "\"Age\": \""+age+"\", \"DOB\": \""+dob+"\", \"TimeCalled\": \""+timeCalled+"\", \"LeaveBaseTime\": \""+leaveBaseTime+"\", \"ArriveScene\": \""+arriveScene+"\", " +
-                "\"LeftScene\": \""+leftScene+"\", \"HandOverTime\": \""+handOverTime+"\", \"LeftHospital\": \""+leftHospital+"\", " +
-                "\"ArriveBase\": \""+arriveBase+"\", \"Sex\": \""+sex+"\", \"InitialState\":  \""+initialState+"\", " +
-                "\"HandOverState\": \""+handoverState+"\", \"MainComplain\": \""+mainComplain+"\"}";
+        String json = "{Station: \""+station+"\", Location: \""+location+"" +
+                "\", Servicepoint: \""+servicePoint+"\", MediumCall: \""+mediumCall+"\", Date: \""+date+"\",IncidentType: \""+incidentType+"\", " +
+                "Age: \""+age+"\", DOB: \""+dob+"\", TimeCalled: \""+timeCalled+"\", LeaveBaseTime: \""+leaveBaseTime+"\", ArriveScene: \""+arriveScene+"\", " +
+                "LeftScene: \""+leftScene+"\", HandOverTime: \""+handOverTime+"\", LeftHospital: \""+leftHospital+"\", " +
+                "ArriveBase: \""+arriveBase+"\", Sex: \""+sex+"\", InitialState:  \""+initialState+"\", " +
+                "HandOverState: \""+handoverState+"\", MainComplain: \""+mainComplain+"\"}";
         requests.makePostRequest(Endpoints.SEND_DATA.toString(), json, context, new RequestListener() {
             @Override
             public void onBefore() {
@@ -307,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             EditText currentField = fields[i];
             currentField.setText("");
         }
-        Alerts.showMessageDialog(context, "Oops!!! Something went wrong", "Please check your internet connection and try again.");
+        Alerts.showMessageDialog(context, "Yay!!!", "Data sent.");
     }
 
     private void showTimeDialog(Context context, String tag){
@@ -351,26 +345,26 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         if(timePickerDialog.getTag().equals("timeCalled")){
             timeCalledEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
         }else if(timePickerDialog.getTag().equals("lbt")){
-            lbtEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            lbtEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("arrSc")){
-            arrScEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            arrScEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("leftsc")){
-            leftScEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            leftScEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("lefthos")){
-            leftHosEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            leftHosEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("arrBase")){
-            arrBaseEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            arrBaseEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("handTime")){
-            handTimeEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            handTimeEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }
     }
 
     @Override
     public void onDateSet(DatePickerDialog datePickerDialog, int i, int i1, int i2) {
         if(datePickerDialog.getTag().equals("dob")){
-            dobEd.setText(String.valueOf(i2)+"-"+String.valueOf(i1)+"-"+String.valueOf(i));
+            dobEd.setText(String.valueOf(i)+"-"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1))+"-"+String.valueOf(i2));
         }else if(datePickerDialog.getTag().equals("date")){
-            dateEd.setText(String.valueOf(i2)+"-"+String.valueOf(i1)+"-"+String.valueOf(i));
+            dateEd.setText(String.valueOf(i)+"-"+  ((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1): String.valueOf(i1))+"-"+String.valueOf(i2));
         }
 
     }
