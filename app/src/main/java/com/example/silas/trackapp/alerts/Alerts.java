@@ -30,6 +30,14 @@ public class Alerts {
         builder.create().show();
     }
 
+    public static void showMessageDialog(Context context, String title, String message, DialogInterface.OnClickListener onClick) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(message)
+                .setNeutralButton("OK", onClick);
+        builder.create().show();
+    }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setStatusbarColor(Context context){
         Window window = ((Activity)context).getWindow();

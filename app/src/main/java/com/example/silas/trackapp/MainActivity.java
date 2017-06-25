@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
         } else {
             setContentView(R.layout.activity_main);
 
+            Intent intent = getIntent();
+            String arrBase = intent.getStringExtra("arrBase");
+            String arrScene = intent.getStringExtra("arrSc");
+            String lbt = intent.getStringExtra("lbt");
+            String lHos = intent.getStringExtra("lHos");
+            String lSc = intent.getStringExtra("lSc");
+
             ArrayList<String> stations = new ArrayList<>();
             stations.add("Asokore");
             stations.add("Ashanti");
@@ -110,11 +117,21 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
             dobEd = (EditText) findViewById(R.id.ed_dob);
             timeCalledEd = (EditText) findViewById(R.id.ed_time_called);
             lbtEd = (EditText) findViewById(R.id.ed_lbt);
+            lbtEd.setEnabled(false);
+            lbtEd.setText(lbt);
             arrScEd = (EditText) findViewById(R.id.ed_arr_sc);
+            arrScEd.setEnabled(false);
+            arrScEd.setText(arrScene);
             leftScEd = (EditText) findViewById(R.id.ed_left_sc);
+            leftScEd.setEnabled(false);
+            leftScEd.setText(lSc);
             handTimeEd = (EditText) findViewById(R.id.ed_hand_time);
             leftHosEd = (EditText) findViewById(R.id.ed_left_hos);
+            leftHosEd.setEnabled(false);
+            leftHosEd.setText(lHos);
             arrBaseEd = (EditText) findViewById(R.id.ed_arrive_base);
+            arrBaseEd.setEnabled(false);
+            arrBaseEd.setText(arrBase);
             mainComplainEd = (EditText) findViewById(R.id.ed_main_complain);
 
             stationsSpinner = (Spinner) findViewById(R.id.sp_station);
@@ -149,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if(hasFocus){
-                        showTimeDialog(v.getContext(), "lbt");
+                        //showTimeDialog(v.getContext(), "lbt");
                     }
                 }
             });
@@ -158,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if(hasFocus){
-                        showTimeDialog(v.getContext(), "arrSc");
+                        //showTimeDialog(v.getContext(), "arrSc");
                     }
                 }
             });
@@ -167,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if(hasFocus){
-                        showTimeDialog(v.getContext(), "leftsc");
+                        //showTimeDialog(v.getContext(), "leftsc");
                     }
                 }
             });
@@ -176,7 +193,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if(hasFocus){
-                        showTimeDialog(v.getContext(), "lefthos");
+                        //showTimeDialog(v.getContext(), "lefthos");
                     }
                 }
             });
@@ -185,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
                 @Override
                 public void onFocusChange(View v, boolean hasFocus) {
                     if(hasFocus){
-                        showTimeDialog(v.getContext(), "arrBase");
+                        //showTimeDialog(v.getContext(), "arrBase");
                     }
                 }
             });
@@ -296,12 +313,18 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     private void oopsMessage(Context context) {
         Alerts.showMessageDialog(context, "Oops!!! Something went wrong", "Please check your internet connection and try again.");
     }
-    private void successMessage(Context context, EditText[] fields) {
+    private void successMessage(final Context context, EditText[] fields) {
         for (int i = 0; i < fields.length; i++) {
             EditText currentField = fields[i];
             currentField.setText("");
         }
-        Alerts.showMessageDialog(context, "Yay!!!", "Data sent.");
+        Alerts.showMessageDialog(context, "Yay!!!", "Data sent.", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startActivity(new Intent(context, SelectTimeActivity.class));
+                finish();
+            }
+        });
     }
 
     private void showTimeDialog(Context context, String tag){

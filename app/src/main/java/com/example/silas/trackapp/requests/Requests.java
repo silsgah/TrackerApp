@@ -33,7 +33,7 @@ public class Requests {
     }
 
 
-    public static void makeGetRequest(final String url, final String json, final Context context, final RequestListener listener){
+    public static void makeGetRequest(final String url, final Context context, final RequestListener listener){
         listener.onBefore();
         new Thread(new Runnable() {
             @Override

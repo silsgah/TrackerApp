@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                     editTextUsername.setError(getString(R.string.emptyUsername));
                 }else {
                     cache.setSignedIn(true);
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    startActivity(new Intent(LoginActivity.this, SelectTimeActivity.class));
                     finish();
                     //loginUser(editTextUsername.getText().toString(), editTextInputPin.getText().toString());
                 }
