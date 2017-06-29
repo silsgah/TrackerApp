@@ -52,210 +52,202 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        cache = AppCache.getInstance(MainActivity.this);
-        if (!cache.isSignedIn()) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            finish();
-        } else {
-            setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
 
-            Intent intent = getIntent();
-            String arrBase = intent.getStringExtra("arrBase");
-            String arrScene = intent.getStringExtra("arrSc");
-            String lbt = intent.getStringExtra("lbt");
-            String lHos = intent.getStringExtra("lHos");
-            String lSc = intent.getStringExtra("lSc");
+        Intent intent = getIntent();
+        String arrBase = intent.getStringExtra("arrBase");
+        String arrScene = intent.getStringExtra("arrSc");
+        String lbt = intent.getStringExtra("lbt");
+        String lHos = intent.getStringExtra("lHos");
+        String lSc = intent.getStringExtra("lSc");
 
-            ArrayList<String> stations = new ArrayList<>();
-            stations.add("Asokore");
-            stations.add("Ashanti");
-            stations.add("Mampon");
-            stations.add("Baba Yara");
-            stations.add("Bekwai");
-            stations.add("Ejisu");
-            stations.add("Ejura");
-            stations.add("Juaso");
-            stations.add("Kath");
-            stations.add("Konongo");
+        ArrayList<String> stations = new ArrayList<>();
+        stations.add("Asokore");
+        stations.add("Ashanti");
+        stations.add("Mampon");
+        stations.add("Baba Yara");
+        stations.add("Bekwai");
+        stations.add("Ejisu");
+        stations.add("Ejura");
+        stations.add("Juaso");
+        stations.add("Kath");
+        stations.add("Konongo");
 
-            final ArrayList<String> servicePoint = new ArrayList<>();
-            servicePoint.add("hospital");
-            servicePoint.add("industrial");
-            servicePoint.add("Recreational");
-            servicePoint.add("Residence");
-            servicePoint.add("Roadside");
+        final ArrayList<String> servicePoint = new ArrayList<>();
+        servicePoint.add("hospital");
+        servicePoint.add("industrial");
+        servicePoint.add("Recreational");
+        servicePoint.add("Residence");
+        servicePoint.add("Roadside");
 
-            ArrayList<String> incidentTypes = new ArrayList<>();
-            incidentTypes.add("Investigations");
-            incidentTypes.add("Medical");
-            incidentTypes.add("OBS & Gynae");
-            incidentTypes.add("Others");
-            incidentTypes.add("Trauma");
+        ArrayList<String> incidentTypes = new ArrayList<>();
+        incidentTypes.add("Investigations");
+        incidentTypes.add("Medical");
+        incidentTypes.add("OBS & Gynae");
+        incidentTypes.add("Others");
+        incidentTypes.add("Trauma");
 
-            ArrayList<String> initialState = new ArrayList<>();
-            initialState.add("Alert");
-            initialState.add("Verbal Response");
-            initialState.add("Pain");
-            initialState.add("Unresponsive");
+        ArrayList<String> initialState = new ArrayList<>();
+        initialState.add("Alert");
+        initialState.add("Verbal Response");
+        initialState.add("Pain");
+        initialState.add("Unresponsive");
 
-            ArrayList<String> handOffState = new ArrayList<>();
-            handOffState.add("Deteriorated");
-            handOffState.add("Expired en route");
-            handOffState.add("Improved");
-            handOffState.add("Unchanged");
+        ArrayList<String> handOffState = new ArrayList<>();
+        handOffState.add("Deteriorated");
+        handOffState.add("Expired en route");
+        handOffState.add("Improved");
+        handOffState.add("Unchanged");
 
-            requests = new Requests();
+        requests = new Requests();
 
-            genderRg = (RadioGroup) findViewById(R.id.rg_gender);
+        genderRg = (RadioGroup) findViewById(R.id.rg_gender);
 
-            submitButton = (Button) findViewById(R.id.btn_submit);
+        submitButton = (Button) findViewById(R.id.btn_submit);
 
-            locationEd = (EditText) findViewById(R.id.ed_location);
-            mediumCallEd = (EditText) findViewById(R.id.ed_med_call);
-            dateEd = (EditText) findViewById(R.id.ed_date);
-            ageEd = (EditText) findViewById(R.id.ed_age);
-            dobEd = (EditText) findViewById(R.id.ed_dob);
-            timeCalledEd = (EditText) findViewById(R.id.ed_time_called);
-            lbtEd = (EditText) findViewById(R.id.ed_lbt);
-            lbtEd.setEnabled(false);
-            lbtEd.setText(lbt);
-            arrScEd = (EditText) findViewById(R.id.ed_arr_sc);
-            arrScEd.setEnabled(false);
-            arrScEd.setText(arrScene);
-            leftScEd = (EditText) findViewById(R.id.ed_left_sc);
-            leftScEd.setEnabled(false);
-            leftScEd.setText(lSc);
-            handTimeEd = (EditText) findViewById(R.id.ed_hand_time);
-            leftHosEd = (EditText) findViewById(R.id.ed_left_hos);
-            leftHosEd.setEnabled(false);
-            leftHosEd.setText(lHos);
-            arrBaseEd = (EditText) findViewById(R.id.ed_arrive_base);
-            arrBaseEd.setEnabled(false);
-            arrBaseEd.setText(arrBase);
-            mainComplainEd = (EditText) findViewById(R.id.ed_main_complain);
+        locationEd = (EditText) findViewById(R.id.ed_location);
+        mediumCallEd = (EditText) findViewById(R.id.ed_med_call);
+        dateEd = (EditText) findViewById(R.id.ed_date);
+        ageEd = (EditText) findViewById(R.id.ed_age);
+        dobEd = (EditText) findViewById(R.id.ed_dob);
+        timeCalledEd = (EditText) findViewById(R.id.ed_time_called);
+        lbtEd = (EditText) findViewById(R.id.ed_lbt);
+        lbtEd.setEnabled(false);
+        lbtEd.setText(lbt);
+        arrScEd = (EditText) findViewById(R.id.ed_arr_sc);
+        arrScEd.setEnabled(false);
+        arrScEd.setText(arrScene);
+        leftScEd = (EditText) findViewById(R.id.ed_left_sc);
+        leftScEd.setEnabled(false);
+        leftScEd.setText(lSc);
+        handTimeEd = (EditText) findViewById(R.id.ed_hand_time);
+        leftHosEd = (EditText) findViewById(R.id.ed_left_hos);
+        leftHosEd.setEnabled(false);
+        leftHosEd.setText(lHos);
+        arrBaseEd = (EditText) findViewById(R.id.ed_arrive_base);
+        arrBaseEd.setEnabled(false);
+        arrBaseEd.setText(arrBase);
+        mainComplainEd = (EditText) findViewById(R.id.ed_main_complain);
 
-            stationsSpinner = (Spinner) findViewById(R.id.sp_station);
-            servPointSpinner = (Spinner) findViewById(R.id.sp_serv_point);
-            incTypeSpinner = (Spinner) findViewById(R.id.sp_inc_type);
-            initStateSpinner = (Spinner) findViewById(R.id.sp_init_stat);
-            handOffStateSpinner = (Spinner) findViewById(R.id.sp_hand_stat);
+        stationsSpinner = (Spinner) findViewById(R.id.sp_station);
+        servPointSpinner = (Spinner) findViewById(R.id.sp_serv_point);
+        incTypeSpinner = (Spinner) findViewById(R.id.sp_inc_type);
+        initStateSpinner = (Spinner) findViewById(R.id.sp_init_stat);
+        handOffStateSpinner = (Spinner) findViewById(R.id.sp_hand_stat);
 
-            stationsSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, stations));
-            servPointSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, servicePoint));
-            incTypeSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, incidentTypes));
-            initStateSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, initialState));
-            handOffStateSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, handOffState));
+        stationsSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, stations));
+        servPointSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, servicePoint));
+        incTypeSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, incidentTypes));
+        initStateSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, initialState));
+        handOffStateSpinner.setAdapter(new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, handOffState));
 
-            String title = "Tracker Details";
-            final SpannableString s = new SpannableString(title);
-            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-            getSupportActionBar().setTitle(s);
+        String title = "Tracker Details";
+        final SpannableString s = new SpannableString(title);
+        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        getSupportActionBar().setTitle(s);
 
-            final EditText[] editTexts = {locationEd, mediumCallEd, dateEd, ageEd, dobEd, timeCalledEd, lbtEd, arrScEd, leftScEd, handTimeEd, leftHosEd, arrBaseEd, mainComplainEd};
+        final EditText[] editTexts = {locationEd, mediumCallEd, dateEd, ageEd, dobEd, timeCalledEd, lbtEd, arrScEd, leftScEd, handTimeEd, leftHosEd, arrBaseEd, mainComplainEd};
 
-            timeCalledEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        showTimeDialog(v.getContext(), "timeCalled");
-                    }
+        timeCalledEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    showTimeDialog(v.getContext(), "timeCalled");
                 }
-            });
+            }
+        });
 
-            lbtEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        //showTimeDialog(v.getContext(), "lbt");
-                    }
+        lbtEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    //showTimeDialog(v.getContext(), "lbt");
                 }
-            });
+            }
+        });
 
-            arrScEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        //showTimeDialog(v.getContext(), "arrSc");
-                    }
+        arrScEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    //showTimeDialog(v.getContext(), "arrSc");
                 }
-            });
+            }
+        });
 
-            leftScEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        //showTimeDialog(v.getContext(), "leftsc");
-                    }
+        leftScEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    //showTimeDialog(v.getContext(), "leftsc");
                 }
-            });
+            }
+        });
 
-            leftHosEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        //showTimeDialog(v.getContext(), "lefthos");
-                    }
+        leftHosEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    //showTimeDialog(v.getContext(), "lefthos");
                 }
-            });
+            }
+        });
 
-            arrBaseEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        //showTimeDialog(v.getContext(), "arrBase");
-                    }
+        arrBaseEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    //showTimeDialog(v.getContext(), "arrBase");
                 }
-            });
+            }
+        });
 
-            handTimeEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        showTimeDialog(v.getContext(), "handTime");
-                    }
+        handTimeEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    showTimeDialog(v.getContext(), "handTime");
                 }
-            });
+            }
+        });
 
 
 
-            submitButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (validate(editTexts)) {
-                        int index = genderRg.indexOfChild(findViewById(genderRg.getCheckedRadioButtonId()));
-                        gender = index == 0 ? "Female" : "Male";
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (validate(editTexts)) {
+                    int index = genderRg.indexOfChild(findViewById(genderRg.getCheckedRadioButtonId()));
+                    gender = index == 0 ? "Female" : "Male";
 
-                        sendData(v.getContext(), stationsSpinner.getSelectedItem().toString(), locationEd.getText().toString().trim(), servPointSpinner.getSelectedItem().toString(), mediumCallEd.getText().toString(), dateEd.getText().toString(), incTypeSpinner.getSelectedItem().toString(), ageEd.getText().toString(), dobEd.getText().toString(),
-                                timeCalledEd.getText().toString(), lbtEd.getText().toString().trim(), arrScEd.getText().toString(), leftScEd.getText().toString(), handTimeEd.getText().toString().trim(),
-                                leftHosEd.getText().toString().trim(), arrBaseEd.getText().toString().trim(), gender
-                                , initStateSpinner.getSelectedItem().toString(), handOffStateSpinner.getSelectedItem().toString(), mainComplainEd.getText().toString().trim()
-                                );
-                    } else {
-                        Snackbar.make(v, "Please enter all fields", Snackbar.LENGTH_LONG).show();
-                    }
+                    sendData(v.getContext(), stationsSpinner.getSelectedItem().toString(), locationEd.getText().toString().trim(), servPointSpinner.getSelectedItem().toString(), mediumCallEd.getText().toString(), dateEd.getText().toString(), incTypeSpinner.getSelectedItem().toString(), ageEd.getText().toString(), dobEd.getText().toString(),
+                            timeCalledEd.getText().toString(), lbtEd.getText().toString().trim(), arrScEd.getText().toString(), leftScEd.getText().toString(), handTimeEd.getText().toString().trim(),
+                            leftHosEd.getText().toString().trim(), arrBaseEd.getText().toString().trim(), gender
+                            , initStateSpinner.getSelectedItem().toString(), handOffStateSpinner.getSelectedItem().toString(), mainComplainEd.getText().toString().trim()
+                            );
+                } else {
+                    Snackbar.make(v, "Please enter all fields", Snackbar.LENGTH_LONG).show();
                 }
-            });
+            }
+        });
 
-            dobEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        showDateDialog(v.getContext(), "dob");
-                    }
+        dobEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    showDateDialog(v.getContext(), "dob");
                 }
-            });
+            }
+        });
 
-            dateEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if(hasFocus){
-                        showDateDialog(v.getContext(), "date");
-                    }
+        dateEd.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    showDateDialog(v.getContext(), "date");
                 }
-            });
-
-
-        }
+            }
+        });
     }
 
     private boolean validate(EditText[] fields) {
@@ -366,7 +358,7 @@ public class MainActivity extends AppCompatActivity implements TimePickerDialog.
     @Override
     public void onTimeSet(TimePickerDialog timePickerDialog, int i, int i1, int i2) {
         if(timePickerDialog.getTag().equals("timeCalled")){
-            timeCalledEd.setText(String.valueOf(i)+":"+String.valueOf(i1));
+            timeCalledEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("lbt")){
             lbtEd.setText(String.valueOf(i)+":"+((String.valueOf(i1).length() == 1) ? "0"+String.valueOf(i1) : String.valueOf(i1)));
         }else if(timePickerDialog.getTag().equals("arrSc")){

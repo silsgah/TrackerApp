@@ -26,6 +26,12 @@ import com.example.silas.trackapp.requests.Requests;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 public class SelectTimeActivity extends AppCompatActivity {
 
@@ -40,144 +46,133 @@ public class SelectTimeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_time);
+        cache = AppCache.getInstance(SelectTimeActivity.this);
+        if (!cache.isSignedIn()) {
+            startActivity(new Intent(SelectTimeActivity.this, LoginActivity.class));
+            finish();
+        } else {
+            setContentView(R.layout.activity_select_time);
 
-        String title = "Select Time";
-        final SpannableString s = new SpannableString(title);
-        s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        getSupportActionBar().setTitle(s);
+            String title = "Select Time";
+            final SpannableString s = new SpannableString(title);
+            s.setSpan(new ForegroundColorSpan(Color.WHITE), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            getSupportActionBar().setTitle(s);
 
-        requests = new Requests();
-        context = SelectTimeActivity.this;
-        Alerts.setStatusbarColor(context);
+            requests = new Requests();
+            context = SelectTimeActivity.this;
+            Alerts.setStatusbarColor(context);
 
-        cache = AppCache.getInstance(context);
-        lbtTv = (TextView) findViewById(R.id.tv_lbt);
-        arrScTv = (TextView) findViewById(R.id.tv_arrsc);
-        lScTv = (TextView) findViewById(R.id.tv_lsc);
-        lHosTv = (TextView) findViewById(R.id.tv_lhos);
-        arrBaseTv = (TextView) findViewById(R.id.tv_arrbase);
+            cache = AppCache.getInstance(context);
+            lbtTv = (TextView) findViewById(R.id.tv_lbt);
+            arrScTv = (TextView) findViewById(R.id.tv_arrsc);
+            lScTv = (TextView) findViewById(R.id.tv_lsc);
+            lHosTv = (TextView) findViewById(R.id.tv_lhos);
+            arrBaseTv = (TextView) findViewById(R.id.tv_arrbase);
 
-        lbtSw = (Switch) findViewById(R.id.sw_lbt);
-        arrScSw = (Switch) findViewById(R.id.sw_arrsc);
-        lScSw = (Switch) findViewById(R.id.sw_lsc);
-        lHosSw = (Switch) findViewById(R.id.sw_lhos);
-        arrBaseSw = (Switch) findViewById(R.id.sw_arrbase);
+            lbtSw = (Switch) findViewById(R.id.sw_lbt);
+            arrScSw = (Switch) findViewById(R.id.sw_arrsc);
+            lScSw = (Switch) findViewById(R.id.sw_lsc);
+            lHosSw = (Switch) findViewById(R.id.sw_lhos);
+            arrBaseSw = (Switch) findViewById(R.id.sw_arrbase);
 
-        lbtSw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCurrentTime(lbtSw, lbtTv);
-            }
-        });
-
-        lbtSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    arrScSw.setEnabled(true);
-                }else{
-                    arrScSw.setEnabled(false);
+            lbtSw.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getCurrentTime(lbtSw, lbtTv);
                 }
-            }
-        });
+            });
 
-        arrScSw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCurrentTime(arrScSw, arrScTv);
-            }
-        });
-
-
-        arrScSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    lScSw.setEnabled(true);
-                }else{
-                    lScSw.setEnabled(false);
+            lbtSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        arrScSw.setEnabled(true);
+                    } else {
+                        arrScSw.setEnabled(false);
+                    }
                 }
-            }
-        });
+            });
 
-        lScSw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCurrentTime(lScSw, lScTv);
-            }
-        });
-
-        lScSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    lHosSw.setEnabled(true);
-                }else{
-                    lHosSw.setEnabled(false);
+            arrScSw.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getCurrentTime(arrScSw, arrScTv);
                 }
-            }
-        });
+            });
 
-        lHosSw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCurrentTime(lHosSw, lHosTv);
-            }
-        });
 
-        lHosSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    arrBaseSw.setEnabled(true);
-                }else{
-                    arrBaseSw.setEnabled(false);
+            arrScSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        lScSw.setEnabled(true);
+                    } else {
+                        lScSw.setEnabled(false);
+                    }
                 }
-            }
-        });
+            });
 
-        arrBaseSw.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getCurrentTime(arrBaseSw, arrBaseTv);
-            }
-        });
+            lScSw.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getCurrentTime(lScSw, lScTv);
+                }
+            });
+
+            lScSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        lHosSw.setEnabled(true);
+                    } else {
+                        lHosSw.setEnabled(false);
+                    }
+                }
+            });
+
+            lHosSw.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getCurrentTime(lHosSw, lHosTv);
+                }
+            });
+
+            lHosSw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked) {
+                        arrBaseSw.setEnabled(true);
+                    } else {
+                        arrBaseSw.setEnabled(false);
+                    }
+                }
+            });
+
+            arrBaseSw.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    getCurrentTime(arrBaseSw, arrBaseTv);
+                }
+            });
+        }
 
     }
 
 
     private void getCurrentTime(final Switch switchWidget, final TextView txtView){
-        requests.makeGetRequest(Endpoints.GET_TIME.toString(), context, new RequestListener() {
-            @Override
-            public void onBefore() {
-                dialog = ProgressDialog.show(SelectTimeActivity.this, "", "Please wait... Getting time");
-            }
+        try {
+            Calendar cal = Calendar.getInstance();
+            Date currentLocalTime = cal.getTime();
+            DateFormat date = new SimpleDateFormat("HH:mm");
+            //date.setTimeZone(TimeZone.getTimeZone("GMT+1:00"));
 
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, response);
-                dialog.dismiss();
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    if ((jObj.has("statuscode") ? jObj.getString("statuscode") : "").equalsIgnoreCase("200")){
-                    //if(response.contains(":") && !response.contains("!DOCTYPE")){
-                        String res = (jObj.has("messagecontent") ? jObj.getString("messagecontent") : "");
-                        Log.d(TAG, "success"+response);
-                        if(!res.isEmpty()) {
-                            successMessage(switchWidget, txtView, res);
-                        }else{
-                            oopsMessage(switchWidget);
-                        }
-                    }else{
-                        oopsMessage(switchWidget);
-                    }
-                }catch (Exception e){
-                    e.printStackTrace();
-                    oopsMessage(switchWidget);
-                }
-            }
-        });
+            String res = date.format(currentLocalTime);
+            Log.d(TAG, "success  "+res);
+            successMessage(switchWidget, txtView, res);
+        }catch (Exception e){
+            e.printStackTrace();
+            oopsMessage(switchWidget);
+        }
     }
 
 
